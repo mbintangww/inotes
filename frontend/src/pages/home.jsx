@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useNotesContext } from "../hooks/useNotesContext"
+
+//components
 import NotesDetails from "../components/notesDetails"
 import Form from "../components/form"
 
 const Home = () => {
-    const [notes, setNotes] = useState(null)
+    const { notes, dispatch } = useNotesContext()
     useEffect(() => {
         const fetchNotes = async () => {
             const response = await fetch(' http://localhost:4000/api/notes')
             const json = await response.json()
 
             if (response.ok) {
-                setNotes(json)
+                dispatch({ type: 'SET_NOTES', payload: json })
             }
         }
 
