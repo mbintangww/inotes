@@ -15,7 +15,7 @@ const Form = () => {
         console.log(notes)
 
 
-        const response = await fetch('http://localhost:4000/api/notes', {
+        const response = await fetch('todoapp-pi-bay.vercel.app/api/notes', {
             method: "POST",
             body: JSON.stringify(notes),
             headers: {

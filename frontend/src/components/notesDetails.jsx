@@ -4,7 +4,7 @@ const NotesDetails = ({ title, desc, note }) => {
     const { dispatch } = useNotesContext()
 
     const handleClick = async () => {
-        const response = await fetch('http://localhost:4000/api/notes/' + note._id, {
+        const response = await fetch('todoapp-pi-bay.vercel.app/api/notes/' + note._id, {
             method: 'DELETE'
         })
         const json = await response.json()
