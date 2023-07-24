@@ -31,7 +31,6 @@ const Form = () => {
             setError(null)
             setTitle('')
             setDesc('')
-            console.log("new workout set", json)
             dispatch({ type: 'CREATE_NOTES', payload: json })
         }
     }
@@ -48,8 +47,8 @@ const Form = () => {
                         onChange={(e) => setTitle(e.target.value)}
                         className="w-full border border-gray-300 rounded-md p-2"
                         placeholder="Enter title"
-                        value={title}
-                        required />
+                        required value={title}
+                    />
 
                 </div>
                 <div className="mb-4">
