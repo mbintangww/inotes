@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useNotesContext } from "../hooks/useNotesContext"
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const Form = () => {
     const { dispatch } = useNotesContext()
+    const { user } = useAuthContext()
     const [title, setTitle] = useState('')
     const [description, setDesc] = useState('')
     const [error, setError] = useState(null)
@@ -19,7 +21,8 @@ const Form = () => {
             method: "POST",
             body: JSON.stringify(notes),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 
@@ -45,7 +48,7 @@ const Form = () => {
                         type="text"
                         id="title"
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full border border-gray-300 rounded-md p-2"
+                        className="w-full border border-gray-300 rounded-md p-2 active:border-[#2A9D81] px-2 py-1 focus:outline-none focus:ring-[#40E5AE] focus:border-[#40E5AE]"
                         placeholder="Enter title"
                         required value={title}
                     />
@@ -58,14 +61,14 @@ const Form = () => {
                         onChange={(e) => {
                             setDesc(e.target.value)
                         }}
-                        className="w-full border border-gray-300 rounded-md p-2"
+                        className="w-full border border-gray-300 rounded-md p-2 active:border-[#2A9D81] px-2 py-1 focus:outline-none focus:ring-[#40E5AE] focus:border-[#40E5AE]"
                         rows="4"
                         placeholder="Enter description"
                         value={description}
                         required></textarea>
 
                 </div>
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">Submit</button>
+                {user && <button type="submit" className="bg-[#40E5AE] hover:bg-[#2A9D81] text-white font-semibold py-2 px-4 rounded-md">Add</button>}
                 {error && <div className="error">{error}</div>}
             </form>
         </>

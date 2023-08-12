@@ -1,16 +1,24 @@
+import { useLogout } from "../hooks/useLogout"
+import { useAuthContext } from "../hooks/useAuthContext"
+
+
 const NavBar = () => {
+    const { logout } = useLogout()
+    const { user } = useAuthContext()
 
-
+    const handleClick = () => {
+        logout()
+    }
     return (
         <div>
             <div className="navbar bg-base-100">
                 <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a href="" className="button button-ghost font-bold text-center text-4xl text-[#Fcb0b3]">I<span className="text-[#40E5AE]">notes</span></a>
                 </div>
                 <div className="flex-none gap-2">
-                    <div className="form-control">
+                    {user && <div className="form-control">
                         <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-                    </div>
+                    </div>}
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -18,15 +26,17 @@ const NavBar = () => {
                             </div>
                         </label>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                            <li>
+                            {user && <li>
                                 <a className="justify-between">
                                     Profile
                                     <span className="badge">New</span>
                                 </a>
-                            </li>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/signup">Signup</a></li>
-                            <li><a>Logout</a></li>
+                            </li>}
+                            {user ? (<li><a onClick={handleClick}>Logout</a></li>) : (<>
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/signup">Signup</a></li></>)}
+
+
                         </ul>
                     </div>
                 </div>

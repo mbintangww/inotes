@@ -2,17 +2,13 @@ const User = require('../model/usersModel')
 const validator = require('validator')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
-const generateToken = (user) => {
+const generateToken = (_id) => {
     //generate token
-    const { JWT_SECRET, JWT_EXPIRATION } = process.env;
-    const payload = {
-        id: user.id,
-        email: user.email,
-        // tambahkan data pengguna lainnya jika diperlukan
-    };
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRATION })
-    return token;
+    const { JWT_SECRET, JWT_EXPIRATION } = process.env
+    const token = jwt.sign({ _id }, JWT_SECRET, { expiresIn: JWT_EXPIRATION })
+    return token
 };
 
 const login = async (req, res) => {
@@ -35,7 +31,7 @@ const login = async (req, res) => {
             throw new Error("Your password is not valid")
         }
         const token = generateToken(user._id)
-        return res.status(200).json(user, token)
+        return res.status(200).json({ id: user._id, email: user.email, token })
         //...
     } catch (error) { return res.status(400).json({ error: error.message }) }
 }
