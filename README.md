@@ -1,3 +1,4 @@
+https://github.com/mbintangww/inotes/assets/115893918/d436b816-ab36-42b9-ad24-e554692abc11
 # inotes (Digital Simple Note)
 
 ## Overview
@@ -38,6 +39,5 @@ iNote is a user-friendly and responsive web application designed for creating an
 - **Version Control**:
   - Git and GitHub
   
-## Demo
-![scrnli_06_11_2023_15-15-23 (online-video-cutter com)](https://github.com/mbintangww/myanimelist-scrapper/assets/115893918/3a5a6b01-885c-4d23-b892-a59d3830bf0b)
+
 
