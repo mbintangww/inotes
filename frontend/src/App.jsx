@@ -8,6 +8,7 @@ import Signup from './pages/signup'
 
 //components
 import NavBar from './components/navBar'
+import AutoLogout from './components/autoLogout'
 
 function App() {
   const { user } = useAuthContext()
@@ -17,7 +18,7 @@ function App() {
 
       <div className='App'>
         <NavBar />
-
+        <AutoLogout />
         <BrowserRouter>
           <div className=''>
             <Routes>

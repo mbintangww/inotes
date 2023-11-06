@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { useAuthContext } from './useAuthContext'
+import { useState } from 'react';
+import { useAuthContext } from './useAuthContext';
+
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
@@ -10,8 +11,6 @@ export const useSignup = () => {
     const signup = async (email, password) => {
         setIsLoading(true)
         setError(null)
-
-
 
         const response = await fetch('http://localhost:4000/api/user/signup', {
             method: 'POST',

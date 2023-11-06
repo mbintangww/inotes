@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useLogin } from '../hooks/useLogin'
+import { Link } from 'react-router-dom';
+
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -20,7 +22,7 @@ const Login = () => {
                     <h1 className="font-bold text-center text-4xl text-[#fcb0b3]">I<span className="text-[#40E5AE]">notes</span></h1>
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col bg-white p-10 rounded-lg shadow space-y-6">
-                            <h1 className="font-bold text-xl text-center text-[#40E5AE]">Sign in to your account</h1>
+                            <h1 className="font-bold text-xl text-center text-[#40E5AE]">Log In to your account</h1>
                             <div className="flex flex-col space-y-1">
                                 <label className='text-[#40E5AE]' >Email</label>
                                 <input
@@ -28,6 +30,7 @@ const Login = () => {
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                    required
                                 />
                             </div>
 
@@ -41,12 +44,14 @@ const Login = () => {
                                 />
                             </div>
 
-                            <div className="flex flex-col-reverse sm:flex-row sm:justify-between items-center">
-                                <a href="#" className="inline-block text-[#40E5AE] hover:text-[#2A9D81] hover:underline">Forgot your password?</a>
-                                <button type="submit" className="bg-[#40E5AE] text-white font-bold px-5 py-2 rounded focus:outline-none shadow hover:bg-[#2A9D81] transition-colors" disabled={isLoading}>Log In</button>
+                            <div className="flex flex-col justify-center items-center ">
 
+
+                                <button type="submit" className="bg-[#40E5AE] text-white font-bold px-5 py-2 mb-3 rounded focus:outline-none shadow hover:bg-[#2A9D81] transition-colors" disabled={isLoading}>Log In</button>
+                                <Link to="/signup" className="justify-self text-[#40E5AE] hover:text-[#2A9D81] hover:underline">Create account</Link>
+                                {error && <div class="bg-red-100 text-red-700 p-2 mt-2 rounded"> {error}</div>}
                             </div>
-                            {error && <div> {error}</div>}
+
                         </div>
                     </form>
                     <div className="flex justify-center text-gray-500 text-sm">

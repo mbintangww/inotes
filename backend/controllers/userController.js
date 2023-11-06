@@ -7,7 +7,7 @@ require('dotenv').config()
 const generateToken = (_id) => {
     //generate token
     const { JWT_SECRET, JWT_EXPIRATION } = process.env
-    const token = jwt.sign({ _id }, JWT_SECRET, { expiresIn: JWT_EXPIRATION })
+    const token = jwt.sign({ _id }, JWT_SECRET, { expiresIn: `${JWT_EXPIRATION}s` })
     return token
 };
 
